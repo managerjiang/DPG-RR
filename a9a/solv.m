@@ -1,0 +1,11 @@
+clear 
+load('a9a.mat');
+load('L_a9a.mat');
+L=double(L);
+L(L==0)=-1;
+ lamuda1=5*10^(-4);
+ lamuda2=5*10^(-4);
+obj_m=@(x_k)sum(1./(1+exp(L'.*A*x_k)),1)/size(A,1)+lamuda1*norm(x_k,1)+lamuda2*norm(x_k,2)^2; 
+ [x,fval]=fminunc(obj_m,zeros(123,1));
+ x
+ fval
